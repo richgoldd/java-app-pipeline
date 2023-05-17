@@ -21,7 +21,7 @@ pipeline {
            agent { docker 'maven:3.5-alpine' }
            steps { 
                    echo 'Building stage for the app...'
-                   sh 'mvn compile'
+                   sh 'mvn clean install'
            }
         }
 
