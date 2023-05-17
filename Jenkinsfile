@@ -25,6 +25,22 @@ pipeline {
            }
         }
 
+        stage('Test App') {
+           agent { docker 'maven:3.5-alpine' }
+           steps {
+                   echo 'Testing stage for the app...'
+                   sh 'mvn test'
+
+           }
+        }
+
+        stage('Packaging Stage') {
+           agent { docker 'maven:3.5-alpine' }
+           steps {
+                   echo 'Packaging stage for the app..'
+                   sh 'mvn package'
+           }
+        }
 
         stage('Docker Image Build') {
             steps {
