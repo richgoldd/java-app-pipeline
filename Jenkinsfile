@@ -21,7 +21,7 @@ pipeline {
            agent { docker 'maven:3.5-alpine' }
            steps { 
                    echo 'Building stage for the app...'
-                   sh 'mvn clean install'
+                   sh 'mvn compile'
            }
         }
 
@@ -30,6 +30,7 @@ pipeline {
            steps {
                    echo 'Testing stage for the app...'
                    sh 'mvn test'
+                   junit '**/target/sure-reports/TEST-*.xml'
 
            }
         }
