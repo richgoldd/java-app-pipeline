@@ -19,6 +19,9 @@ pipeline {
               
         stage('Build Stage') {
            agent { docker 'maven:3.5-alpine' }
+           when {
+                expression { params.Deploy_To_Production }
+		}
            steps { 
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
