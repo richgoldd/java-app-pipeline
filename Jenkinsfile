@@ -19,10 +19,11 @@ pipeline {
               
         stage('Build Stage') {
            agent { docker 'maven:3.5-alpine' }
-           when {
-                expression { $params.Deploy_To_Production == 'Yes' }
-		}
+	   options {
+                  timeout(time: 1, unit: 'MINUTES')
+                  }
            steps { 
+                   input 'Please approve to proceed'
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
            }
