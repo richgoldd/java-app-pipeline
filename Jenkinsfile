@@ -23,7 +23,7 @@ pipeline {
       //             timeout(time: 1, unit: 'MINUTES')
       //             }
            steps { 
-                   input ('Please approve to proceed' OK "Yes"
+                   input ('Please approve to proceed' OK "Yes")
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
            }
