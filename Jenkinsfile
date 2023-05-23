@@ -44,6 +44,7 @@ pipeline {
            steps {
                    echo 'Packaging stage for the app..'
                    sh 'mvn package'
+                   archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
            }
         }
 
@@ -52,7 +53,7 @@ pipeline {
                 echo 'Bulding docker image...'
                 sh "docker build -t product_service:${env.BUILD_NUMBER} ."
                 sh "docker ps"
-                sh "docker run -d -p 8080:8080 --name app-service product_service:${env.BUILD_NUMBER} &"
+//              sh "docker run -d -p 8080:8080 --name app-service product_service:${env.BUILD_NUMBER} &"
             }
         }        
         
