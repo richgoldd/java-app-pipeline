@@ -19,11 +19,9 @@ pipeline {
               
         stage('Build Stage') {
            agent { docker 'maven:3.5-alpine' }
-	   // options {
-      //             timeout(time: 1, unit: 'MINUTES')
-      //             }
+	
            steps { 
-                   input ('Please approve to proceed' OK "Yes")
+
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
            }
@@ -53,7 +51,7 @@ pipeline {
                 echo 'Bulding docker image...'
                 sh "docker build -t product_service:${env.BUILD_NUMBER} ."
                 sh "docker ps"
-//              sh "docker run -d -p 8080:8080 --name app-service product_service:${env.BUILD_NUMBER} &"
+
             }
         }        
         
