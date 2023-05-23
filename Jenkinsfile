@@ -19,11 +19,11 @@ pipeline {
               
         stage('Build Stage') {
            agent { docker 'maven:3.5-alpine' }
-	   options {
-                  timeout(time: 1, unit: 'MINUTES')
-                  }
+	   // options {
+      //             timeout(time: 1, unit: 'MINUTES')
+      //             }
            steps { 
-                   input 'Please approve to proceed'
+                   input ('Please approve to proceed' OK "Yes"
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
            }
